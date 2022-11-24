@@ -1,0 +1,340 @@
+Microsoft Windows [Version 10.0.22621.819]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\johna>cd C:\
+
+C:\>xampp\mysql\bin
+'xampp\mysql\bin' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\>cd xampp\mysql\bin
+
+C:\xampp\mysql\bin>mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 8
+Server version: 10.4.25-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> show databases;
++---------------------------+
+| Database                  |
++---------------------------+
+| db_ablay                  |
+| db_ablay_activitybasicsql |
+| db_sample                 |
+| information_schema        |
+| mysql                     |
+| performance_schema        |
+| phpmyadmin                |
+| test                      |
++---------------------------+
+8 rows in set (0.005 sec)
+
+MariaDB [(none)]> delete database db_ablay;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'database db_ablay' at line 1
+MariaDB [(none)]> delete db_ablay;
+ERROR 1046 (3D000): No database selected
+MariaDB [(none)]> use db_ablay;
+Database changed
+MariaDB [db_ablay]> show tables;
++--------------------+
+| Tables_in_db_ablay |
++--------------------+
+| tbl_ablay          |
++--------------------+
+1 row in set (0.002 sec)
+
+MariaDB [db_ablay]> drop database db_ablay;
+Query OK, 1 row affected (0.008 sec)
+
+MariaDB [(none)]> show databases;
++---------------------------+
+| Database                  |
++---------------------------+
+| db_ablay_activitybasicsql |
+| db_sample                 |
+| information_schema        |
+| mysql                     |
+| performance_schema        |
+| phpmyadmin                |
+| test                      |
++---------------------------+
+7 rows in set (0.001 sec)
+
+MariaDB [(none)]> create database db_ablay;
+Query OK, 1 row affected (0.001 sec)
+
+MariaDB [(none)]> create table first_exam (teacher_id int(11), last_name varchar (30), middle_name char (20), first_name varchar (30), date_of_birth date, contact_no char (11), address text;Bye
+Ctrl-C -- exit!
+
+C:\xampp\mysql\bin>
+
+C:\xampp\mysql\bin>mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 55
+Server version: 10.4.25-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> use database db_ablay;
+ERROR 1049 (42000): Unknown database 'database'
+MariaDB [(none)]> show databases;
++---------------------------+
+| Database                  |
++---------------------------+
+| db_ablay                  |
+| db_ablay_activitybasicsql |
+| db_sample                 |
+| information_schema        |
+| mysql                     |
+| performance_schema        |
+| phpmyadmin                |
+| test                      |
++---------------------------+
+8 rows in set (0.001 sec)
+
+MariaDB [(none)]> use db_ablay;
+Database changed
+MariaDB [db_ablay]> create table first_exam (teacher_id int(11), last_name varchar (30), middle_name char (20), first_name varchar (30), date_of_birth date, contact_no char (11), address text;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+MariaDB [db_ablay]> create table first_exam (teacher_id int(11), last_name varchar (30), middle_name char (20), first_name varchar (30), date_of_birth date, contact_no char (11), address text);
+Query OK, 0 rows affected (0.025 sec)
+
+MariaDB [db_ablay]> ALTER TABLE first_exam ADD age int(3) AFTER first_name;
+Query OK, 0 rows affected (0.007 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [db_ablay]> ALTER TABLE first_exam ADD gender char(6) AFTER age;
+Query OK, 0 rows affected (0.016 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [db_ablay]> ALTER TABLE first_exam ADD salary float(8,2);
+Query OK, 0 rows affected (0.009 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [db_ablay]> ALTER TABLE first_exam DROP COLUMN address;
+Query OK, 0 rows affected (0.007 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [db_ablay]> RENAME TABLE first_exam to tbl_ablay;
+Query OK, 0 rows affected (0.007 sec)
+
+MariaDB [db_ablay]> INSERT into tbl_ablay(last_name, middle_name, first_name) values ('Ablay', 'Capricho', 'John Sebastian');
+Query OK, 1 row affected (0.002 sec)
+
+MariaDB [db_ablay]> INSERT into tbl_ablay (teacher_id) value (1001);
+Query OK, 1 row affected (0.009 sec)
+
+MariaDB [db_ablay]> INSERT into tbl_ablay(date_of_birth) values ('2002-11-03', 'male');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+MariaDB [db_ablay]> INSERT into tbl_ablay(date_of_birth) values ('2002-11-03');
+Query OK, 1 row affected (0.003 sec)
+
+MariaDB [db_ablay]> INSERT into tbl_ablay (gender, age) value ('male', 20);
+Query OK, 1 row affected (0.002 sec)
+
+MariaDB [db_ablay]> SELECT *from tbl_ablay;
++------------+-----------+-------------+----------------+------+--------+---------------+------------+--------+
+| teacher_id | last_name | middle_name | first_name     | age  | gender | date_of_birth | contact_no | salary |
++------------+-----------+-------------+----------------+------+--------+---------------+------------+--------+
+|       NULL | Ablay     | Capricho    | John Sebastian | NULL | NULL   | NULL          | NULL       |   NULL |
+|       1001 | NULL      | NULL        | NULL           | NULL | NULL   | NULL          | NULL       |   NULL |
+|       NULL | NULL      | NULL        | NULL           | NULL | NULL   | 2002-11-03    | NULL       |   NULL |
+|       NULL | NULL      | NULL        | NULL           |   20 | male   | NULL          | NULL       |   NULL |
++------------+-----------+-------------+----------------+------+--------+---------------+------------+--------+
+4 rows in set (0.000 sec)
+
+MariaDB [db_ablay]> ALTER TABLE tbl_ablay CHANGE COLUMN date_of_birth birth_date date;
+Query OK, 0 rows affected (0.016 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [db_ablay]> SELECT first_name, last_name from tbl_ablay;
++----------------+-----------+
+| first_name     | last_name |
++----------------+-----------+
+| John Sebastian | Ablay     |
+| NULL           | NULL      |
+| NULL           | NULL      |
+| NULL           | NULL      |
++----------------+-----------+
+4 rows in set (0.000 sec)
+
+MariaDB [db_ablay]> SELECT *from tbl_ablay where gender='male';
++------------+-----------+-------------+------------+------+--------+------------+------------+--------+
+| teacher_id | last_name | middle_name | first_name | age  | gender | birth_date | contact_no | salary |
++------------+-----------+-------------+------------+------+--------+------------+------------+--------+
+|       NULL | NULL      | NULL        | NULL       |   20 | male   | NULL       | NULL       |   NULL |
++------------+-----------+-------------+------------+------+--------+------------+------------+--------+
+1 row in set (0.000 sec)
+
+MariaDB [db_ablay]> ALTER TABLE tbl_montano CHANGE COLUMN contact_no 09475747194 int(11);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '09475747194 int(11)' at line 1
+MariaDB [db_ablay]> SELECT *from tbl_ablay;
++------------+-----------+-------------+----------------+------+--------+------------+------------+--------+
+| teacher_id | last_name | middle_name | first_name     | age  | gender | birth_date | contact_no | salary |
++------------+-----------+-------------+----------------+------+--------+------------+------------+--------+
+|       NULL | Ablay     | Capricho    | John Sebastian | NULL | NULL   | NULL       | NULL       |   NULL |
+|       1001 | NULL      | NULL        | NULL           | NULL | NULL   | NULL       | NULL       |   NULL |
+|       NULL | NULL      | NULL        | NULL           | NULL | NULL   | 2002-11-03 | NULL       |   NULL |
+|       NULL | NULL      | NULL        | NULL           |   20 | male   | NULL       | NULL       |   NULL |
++------------+-----------+-------------+----------------+------+--------+------------+------------+--------+
+4 rows in set (0.000 sec)
+
+MariaDB [db_ablay]> DELETE FROM tbl_ablay WHERE teacher_id=1001;
+Query OK, 1 row affected (0.010 sec)
+
+MariaDB [db_ablay]> SELECT *from tbl_ablay;
++------------+-----------+-------------+----------------+------+--------+------------+------------+--------+
+| teacher_id | last_name | middle_name | first_name     | age  | gender | birth_date | contact_no | salary |
++------------+-----------+-------------+----------------+------+--------+------------+------------+--------+
+|       NULL | Ablay     | Capricho    | John Sebastian | NULL | NULL   | NULL       | NULL       |   NULL |
+|       NULL | NULL      | NULL        | NULL           | NULL | NULL   | 2002-11-03 | NULL       |   NULL |
+|       NULL | NULL      | NULL        | NULL           |   20 | male   | NULL       | NULL       |   NULL |
++------------+-----------+-------------+----------------+------+--------+------------+------------+--------+
+3 rows in set (0.000 sec)
+
+MariaDB [db_ablay]> DELETE FROM tbl_ablay WHERE last_name='Ablay', middle_name='Capricho';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ' middle_name='Capricho'' at line 1
+MariaDB [db_ablay]> DELETE FROM tbl_ablay WHERE last_name='Ablay';
+Query OK, 1 row affected (0.009 sec)
+
+MariaDB [db_ablay]> SELECT *from tbl_ablay;
++------------+-----------+-------------+------------+------+--------+------------+------------+--------+
+| teacher_id | last_name | middle_name | first_name | age  | gender | birth_date | contact_no | salary |
++------------+-----------+-------------+------------+------+--------+------------+------------+--------+
+|       NULL | NULL      | NULL        | NULL       | NULL | NULL   | 2002-11-03 | NULL       |   NULL |
+|       NULL | NULL      | NULL        | NULL       |   20 | male   | NULL       | NULL       |   NULL |
++------------+-----------+-------------+------------+------+--------+------------+------------+--------+
+2 rows in set (0.000 sec)
+
+MariaDB [db_ablay]> TRUNCATE table tbl_ablay;
+Query OK, 0 rows affected (0.029 sec)
+
+MariaDB [db_ablay]> SELECT *from tbl_ablay;
+Empty set (0.000 sec)
+
+MariaDB [db_ablay]> INSERT into tbl_ablay (teacher_id, last_name, middle_name, first_name, birth_date) value (1001, 'Ablay', 'Capricho', 'John Sebastian', 2002-11-03);
+Query OK, 1 row affected, 1 warning (0.013 sec)
+
+MariaDB [db_ablay]> INSERT into tbl_ablay (teacher_id, last_name, middle_name, first_name, age, gender, birth_date, contact_no, salary) value (1002, 'Montano', 'Abayon', 'John Marco', 2002-09-24);
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+MariaDB [db_ablay]> INSERT into tbl_ablay (teacher_id, last_name, middle_name, first_name, age, gender, birth_date, contact_no, salary) value (1002, 'Montano', 'Abayon', 'John Marco', 20, 'male', 2002-09-24, '09574563423, 57,250;
+    '> ;
+    '> ;
+    '>
+    '> '
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+MariaDB [db_ablay]> INSERT into tbl_ablay (teacher_id, last_name, middle_name, first_name, age, gender, birth_date, contact_no, salary) value (1002, 'Montano', 'Abayon', 'John Marco', 20, 'male', 2002-09-24, '09574563423, 57,250);
+    '> ;
+    '> '
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+MariaDB [db_ablay]> INSERT into tbl_ablay (teacher_id, last_name, middle_name, first_name, age, gender, birth_date, contact_no, salary) value (1002, 'Montano', 'Abayon', 'John Marco', 20, 'male', 2002-09-24, 09574563423, 57,250);
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+MariaDB [db_ablay]> INSERT into tbl_ablay (teacher_id, last_name, middle_name, first_name, age, gender, birth_date, contact_no, salary) value (1002, 'Montano', 'Abayon', 'John Marco', 20, 'male', 2002-09-24, 09574563423, 57250);
+Query OK, 1 row affected, 1 warning (0.010 sec)
+
+MariaDB [db_ablay]> INSERT into tbl_ablay (teacher_id, last_name, middle_name, first_name, age, gender, birth_date, contact_no, salary) value (1003, 'Orig', 'Boyles', 'Christian Joseph', 21, 'male', 2002-03-21, 0966541993, 54350);
+Query OK, 1 row affected, 1 warning (0.009 sec)
+
+MariaDB [db_ablay]> desc tbl_ablay;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| teacher_id  | int(11)     | YES  |     | NULL    |       |
+| last_name   | varchar(30) | YES  |     | NULL    |       |
+| middle_name | char(20)    | YES  |     | NULL    |       |
+| first_name  | varchar(30) | YES  |     | NULL    |       |
+| age         | int(3)      | YES  |     | NULL    |       |
+| gender      | char(6)     | YES  |     | NULL    |       |
+| birth_date  | date        | YES  |     | NULL    |       |
+| contact_no  | char(11)    | YES  |     | NULL    |       |
+| salary      | float(8,2)  | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+9 rows in set (0.010 sec)
+
+MariaDB [db_ablay]> SELECT *from tbl_ablay;
++------------+-----------+-------------+------------------+------+--------+------------+------------+----------+
+| teacher_id | last_name | middle_name | first_name       | age  | gender | birth_date | contact_no | salary   |
++------------+-----------+-------------+------------------+------+--------+------------+------------+----------+
+|       1001 | Ablay     | Capricho    | John Sebastian   | NULL | NULL   | 0000-00-00 | NULL       |     NULL |
+|       1002 | Montano   | Abayon      | John Marco       |   20 | male   | 0000-00-00 | 9574563423 | 57250.00 |
+|       1003 | Orig      | Boyles      | Christian Joseph |   21 | male   | 0000-00-00 | 966541993  | 54350.00 |
++------------+-----------+-------------+------------------+------+--------+------------+------------+----------+
+3 rows in set (0.000 sec)
+
+MariaDB [db_ablay]> TRUNCATE tbl_ablay;
+Query OK, 0 rows affected (0.019 sec)
+
+MariaDB [db_ablay]> INSERT into tbl_ablay (teacher_id, last_name, middle_name, first_name, birth_date) value (1001, 'Ablay', 'Capricho', 'John Sebastian', '2002-11-03');
+Query OK, 1 row affected (0.009 sec)
+
+MariaDB [db_ablay]> INSERT into tbl_ablay (teacher_id, last_name, middle_name, first_name, age, gender, birth_date, contact_no, salary) value (1002, 'Montano', 'Abayon', 'John Marco', 20, 'male', '2002-09-24', 09574563423, 57250);
+Query OK, 1 row affected (0.010 sec)
+
+MariaDB [db_ablay]> INSERT into tbl_ablay (teacher_id, last_name, middle_name, first_name, age, gender, birth_date, contact_no, salary) value (1003, 'Orig', 'Boyles', 'Christian Joseph', 21, 'male', '2002-03-21', 0966541993, 54350);
+Query OK, 1 row affected (0.009 sec)
+
+MariaDB [db_ablay]> SELECT *from tbl_ablay;
++------------+-----------+-------------+------------------+------+--------+------------+------------+----------+
+| teacher_id | last_name | middle_name | first_name       | age  | gender | birth_date | contact_no | salary   |
++------------+-----------+-------------+------------------+------+--------+------------+------------+----------+
+|       1001 | Ablay     | Capricho    | John Sebastian   | NULL | NULL   | 2002-11-03 | NULL       |     NULL |
+|       1002 | Montano   | Abayon      | John Marco       |   20 | male   | 2002-09-24 | 9574563423 | 57250.00 |
+|       1003 | Orig      | Boyles      | Christian Joseph |   21 | male   | 2002-03-21 | 966541993  | 54350.00 |
++------------+-----------+-------------+------------------+------+--------+------------+------------+----------+
+3 rows in set (0.000 sec)
+
+MariaDB [db_ablay]> UPDATE tbl_ablay SET contact_no='09475747194' WHERE teacher_id=1003;
+Query OK, 1 row affected (0.007 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [db_ablay]> DELETE FROM tbl_ablay WHERE teacher_id=1002;
+Query OK, 1 row affected (0.010 sec)
+
+MariaDB [db_ablay]> SELECT *from tbl_ablay;
++------------+-----------+-------------+------------------+------+--------+------------+-------------+----------+
+| teacher_id | last_name | middle_name | first_name       | age  | gender | birth_date | contact_no  | salary   |
++------------+-----------+-------------+------------------+------+--------+------------+-------------+----------+
+|       1001 | Ablay     | Capricho    | John Sebastian   | NULL | NULL   | 2002-11-03 | NULL        |     NULL |
+|       1003 | Orig      | Boyles      | Christian Joseph |   21 | male   | 2002-03-21 | 09475747194 | 54350.00 |
++------------+-----------+-------------+------------------+------+--------+------------+-------------+----------+
+2 rows in set (0.000 sec)
+
+MariaDB [db_ablay]> CREATE TABLE tbl_copy AS SELECT *from tbl_ablay;
+Query OK, 2 rows affected (0.025 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+MariaDB [db_ablay]> SELECT *from tbl_copy;
++------------+-----------+-------------+------------------+------+--------+------------+-------------+----------+
+| teacher_id | last_name | middle_name | first_name       | age  | gender | birth_date | contact_no  | salary   |
++------------+-----------+-------------+------------------+------+--------+------------+-------------+----------+
+|       1001 | Ablay     | Capricho    | John Sebastian   | NULL | NULL   | 2002-11-03 | NULL        |     NULL |
+|       1003 | Orig      | Boyles      | Christian Joseph |   21 | male   | 2002-03-21 | 09475747194 | 54350.00 |
++------------+-----------+-------------+------------------+------+--------+------------+-------------+----------+
+2 rows in set (0.000 sec)
+
+MariaDB [db_ablay]> TRUNCATE tbl_copy;
+Query OK, 0 rows affected (0.020 sec)
+
+MariaDB [db_ablay]> SELECT *from tbl_ablay;
++------------+-----------+-------------+------------------+------+--------+------------+-------------+----------+
+| teacher_id | last_name | middle_name | first_name       | age  | gender | birth_date | contact_no  | salary   |
++------------+-----------+-------------+------------------+------+--------+------------+-------------+----------+
+|       1001 | Ablay     | Capricho    | John Sebastian   | NULL | NULL   | 2002-11-03 | NULL        |     NULL |
+|       1003 | Orig      | Boyles      | Christian Joseph |   21 | male   | 2002-03-21 | 09475747194 | 54350.00 |
++------------+-----------+-------------+------------------+------+--------+------------+-------------+----------+
+2 rows in set (0.000 sec)
+
+MariaDB [db_ablay]> SELECT *from tbl_copy;
+Empty set (0.000 sec)
+
+MariaDB [db_ablay]>
